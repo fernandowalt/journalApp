@@ -5,17 +5,13 @@ import { useForm } from "../../hooks/useForm";
 import { starloginemailpassword, startGoogleLogin } from "../../actions/auth";
 
 export const LoginScreen = () => {
-  const {loading}  = useSelector((state) => state.ui);
-  const estado = useSelector((state)=>state)
-  console.log(estado);
-
-
-
+  const { loading } = useSelector((state) => state.ui);
+  const estado = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
   const [formValues, handleInputChange] = useForm({
-    email: "fertter@gmail.com",
+    email: "fernan@gmail.com",
     password: "123456",
   });
 
@@ -57,7 +53,6 @@ export const LoginScreen = () => {
           className="btn btn-primary btn-block"
           type="submit"
           disabled={loading}
-       
         >
           Ingresar
         </button>
