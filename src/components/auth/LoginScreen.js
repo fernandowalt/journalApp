@@ -1,31 +1,35 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import {starloginemailpassword, startGoogleLogin} from "../../actions/auth";
+import { starloginemailpassword, startGoogleLogin } from "../../actions/auth";
 
 export const LoginScreen = () => {
+  const {loading}  = useSelector((state) => state.ui);
+  const estado = useSelector((state)=>state)
+  console.log(estado);
+
+
+
+
   const dispatch = useDispatch();
 
   const [formValues, handleInputChange] = useForm({
     email: "fertter@gmail.com",
-    password: '123456',
+    password: "123456",
   });
-
 
   const { email, password } = formValues;
 
-
   const handleLogin = (e) => {
     e.preventDefault();
-  
-    dispatch(starloginemailpassword(email,password));
+
+    dispatch(starloginemailpassword(email, password));
   };
 
-  const handleGoogleLogin=()=>{
+  const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
-
-  }
+  };
 
   return (
     <>
@@ -49,7 +53,12 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary btn-block" type="submit">
+        <button
+          className="btn btn-primary btn-block"
+          type="submit"
+          disabled={loading}
+       
+        >
           Ingresar
         </button>
 
