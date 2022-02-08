@@ -10,6 +10,8 @@ export const PrivateRoute = ({
     ...rest
 }) => {
 
+
+
     return (
         <Route { ...rest }
             component={ (props) => (

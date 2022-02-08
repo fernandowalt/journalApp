@@ -7,27 +7,31 @@ import { firebase } from "../firebase/firebase-config";
 import { useDispatch } from "react-redux";
 import { login } from "../actions/auth";
 import { PublicRoute } from "./PublicRoute";
+import { starLoginNotes } from "../actions/notes";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
 
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
   
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setisLoggedIn(true);
+
+        dispatch(starLoginNotes(user.uid));
       } else {
         setisLoggedIn(false);
       }
       setChecking(false);
     });
-  }, [setChecking]);
+  },[dispatch,setChecking,setisLoggedIn]);
 
   if (checking) {
-    return <h1>Espera...</h1>;
+    return <h1>Please wait...</h1>;
   }
 
   return (

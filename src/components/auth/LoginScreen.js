@@ -6,7 +6,7 @@ import { starloginemailpassword, startGoogleLogin } from "../../actions/auth";
 
 export const LoginScreen = () => {
   const { loading } = useSelector((state) => state.ui);
-  const estado = useSelector((state) => state);
+  
 
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ export const LoginScreen = () => {
     <>
       <h3 className="auth__title">Login</h3>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} class="animate__animated animate__fadeIn animate__faster">
         <input
           className="auth__input"
           autoComplete="off"
